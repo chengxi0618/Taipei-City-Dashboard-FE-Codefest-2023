@@ -7,12 +7,7 @@ import { useContentStore } from "../../store/contentStore";
 
 const { BASE_URL } = import.meta.env;
 
-const props = defineProps([
-	"chart_config",
-	"series",
-	"map_config",
-	"map_filter",
-]);
+const props = defineProps(["chart_config", "series", "map_config"]);
 const mapStore = useMapStore();
 const contentStore = useContentStore();
 
@@ -23,25 +18,16 @@ function handleDataSelection(index) {
 		return;
 	}
 	if (index !== selectedIndex.value) {
-		// Supports filtering by xAxis
-		if (props.map_filter.mode === "byParam") {
-			mapStore.filterByParam(
-				props.map_filter,
-				props.map_config,
-				props.series[index].name
-			);
-		}
-		// Supports filtering by xAxis
-		else if (props.map_filter.mode === "byLayer") {
-			mapStore.filterByLayer(props.map_config, props.series[index].name);
-		}
+		mapStore.addLayerFilter(
+			`${props.map_config[0].index}-${props.map_config[0].type}`,
+			props.chart_config.map_filter[0],
+			props.chart_config.map_filter[1][index]
+		);
 		selectedIndex.value = index;
 	} else {
-		if (props.map_filter.mode === "byParam") {
-			mapStore.clearByParamFilter(props.map_config);
-		} else if (props.map_filter.mode === "byLayer") {
-			mapStore.clearByLayerFilter(props.map_config);
-		}
+		mapStore.clearLayerFilter(
+			`${props.map_config[0].index}-${props.map_config[0].type}`
+		);
 		selectedIndex.value = null;
 	}
 }
@@ -58,7 +44,7 @@ function handleDataSelection(index) {
 					'maplegend-legend-item': true,
 					'maplegend-filter':
 						contentStore.currentDashboard.mode === '/mapview' &&
-						props.map_filter,
+						props.chart_config.map_filter,
 					'maplegend-selected':
 						contentStore.currentDashboard.mode === '/mapview' &&
 						selectedIndex === index,

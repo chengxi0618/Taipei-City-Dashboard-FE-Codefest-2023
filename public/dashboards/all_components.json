@@ -3596,7 +3596,25 @@
 					"#236e0c",
 					"#666666"
 				],
-				"unit": "千次"
+				"unit": "千次",
+				"map_filter": [
+					"TOWNNAME_origin",
+					[
+						"北投區",
+						"士林區",
+						"內湖區",
+						"南港區",
+						"松山區",
+						"信義區",
+						"中山區",
+						"大同區",
+						"中正區",
+						"萬華區",
+						"大安區",
+						"文山區",
+						"非臺北市"
+					]
+				]
 			},
 			"name": "YouBike週末群像",
 			"source": "臺北大數據中心",
@@ -3672,7 +3690,24 @@
 					"#236e0c",
 					"#666666"
 				],
-				"unit": "千次"
+				"unit": "千次",
+				"map_filter": [
+					"TOWNNAME_origin",
+					[
+						"北投區",
+						"士林區",
+						"內湖區",
+						"南港區",
+						"松山區",
+						"信義區",
+						"中山區",
+						"大同區",
+						"中正區",
+						"萬華區",
+						"大安區",
+						"文山區"
+					]
+				]
 			},
 			"name": "YouBike週間群像",
 			"source": "臺北大數據中心",
@@ -3692,6 +3727,12 @@
 			"id": 144,
 			"index": "youbike_avail_pct",
 			"history_data": true,
+			"chart_config": {
+				"types": ["BarChart", "DonutChart"],
+				"color": ["#797979", "#e97c69", "#ca0020"],
+				"unit": "站",
+				"map_filter": ["category", ["高", "中", "低"]]
+			},
 			"map_config": [
 				{
 					"index": "youbike_avail_pct",
@@ -3753,6 +3794,15 @@
 		"145": {
 			"id": 145,
 			"index": "youbike_sub_stn",
+			"chart_config": {
+				"types": ["DonutChart"],
+				"unit": "站",
+				"color": ["#a8f8ff", "#4cd2ff", "#00a6ff"],
+				"map_filter": [
+					"category",
+					["互補站<=5", "互補站5~10", "互補站>10"]
+				]
+			},
 			"map_config": [
 				{
 					"index": "youbike_sub_stn_2",
@@ -3814,17 +3864,6 @@
 					"type": "circle"
 				}
 			],
-			"map_filter": {
-				"mode": "byParam",
-				"byParam": {
-					"xParam": "category"
-				}
-			},
-			"chart_config": {
-				"types": ["DonutChart"],
-				"unit": "站",
-				"color": ["#a8f8ff", "#4cd2ff", "#00a6ff"]
-			},
 			"name": "YouBike互補站點",
 			"source": "臺北大數據中心",
 			"time_from": "2023-03-01T00:00:00+08:00",
@@ -3842,6 +3881,31 @@
 		"146": {
 			"id": 146,
 			"index": "youbike_grid",
+			"chart_config": {
+				"types": ["TreemapChart", "BarChart"],
+				"unit": "個網格",
+				"color": [
+					"#7FBF7B",
+					"#8E8E8E",
+					"#40A461",
+					"#BEBEBE",
+					"#3D56FF",
+					"#BFDAB8",
+					"#ACCFFF"
+				],
+				"map_filter": [
+					"class",
+					[
+						"無法設站-山區且土地限制",
+						"已設站",
+						"無法設站-山區",
+						"鄰近已設站",
+						"未設站",
+						"無法設站-土地限制",
+						"無法設站-特殊條件限制"
+					]
+				]
+			},
 			"map_config": [
 				{
 					"index": "youbike_grid",
@@ -3974,436 +4038,26 @@
 			],
 			"contributors": ["tuic"]
 		},
-		"156": {
-			"id": 156,
-			"index": "maternity_hospitals",
-			"history_data": true,
-			"map_config": [
-				{
-					"index": "maternity_hospitals",
-					"type": "circle",
-					"paint": {
-						"circle-color": "#31aa96",
-						"circle-radius": 4
-					},
-					"property": [
-						{
-							"key": "醫療機構",
-							"name": "醫療機構"
-						},
-						{
-							"key": "地址",
-							"name": "地址"
-						},
-						{
-							"key": "行政區",
-							"name": "行政區"
-						}
-					],
-					"title": "生育補助合約醫院"
-				}
-			],
+		"300": {
+			"id": 300,
+			"index": "maternity_subsidy_hospital",
 			"chart_config": {
-				"types": ["DistrictChart"],
+				"types": ["VennDiagram"],
 				"unit": "家",
-				"color": ["#31aa96"],
-				"categories": [
-					"北投區",
-					"士林區",
-					"內湖區",
-					"南港區",
-					"松山區",
-					"信義區",
-					"中山區",
-					"大同區",
-					"中正區",
-					"萬華區",
-					"大安區",
-					"文山區"
-				],
-				"map_filter": [
-					"行政區",
-					[
-						"北投區",
-						"士林區",
-						"內湖區",
-						"南港區",
-						"松山區",
-						"信義區",
-						"中山區",
-						"大同區",
-						"中正區",
-						"萬華區",
-						"大安區",
-						"文山區"
-					]
-				]
+				"map_filter": ["category", ["0", "1", "2", "3", "4", "5", "6"]]
 			},
 			"name": "生育補助合約醫院",
 			"source": "衛生局",
-			"time_from": "2023-06-16T00:00:00+08:00",
+			"time_from": "2023-11-15T00:00:00+08:00",
 			"time_to": null,
 			"short_desc": "",
-			"long_desc": "展示與本市簽訂生育篩檢補助合約的各個醫療機構，這些資訊由台北市衛生局提供",
-			"use_case": "本組件致力於協助您快速了解提供各種生育篩檢補助的醫院，並呈現各行政區簽約狀況作為施政參考。",
+			"long_desc": "展示生育篩檢補助合約醫療機構，這些資訊由台北市衛生局提供",
+			"use_case": "生育篩檢補助合約醫院將協助您了解有提供生育相關篩檢補助的醫療機構，方便需要的產婦查詢與前往",
 			"tags": [],
 			"links": [
-				"https://data.taipei/dataset/detail?id=9ee72240-f9b3-42a7-bcbe-e1bb1a28a2dc",
-				"https://data.taipei/dataset/detail?id=a14dd58c-ecef-480c-b574-889ecfa631c3"
+				"https://data.taipei/dataset/detail?id=9ee72240-f9b3-42a7-bcbe-e1bb1a28a2dc"
 			],
 			"contributors": ["tuic"]
-		},
-		"161": {
-			"id": 161,
-			"index": "waterworks",
-			"map_config": [
-				{
-					"index": "waterworks_levee",
-					"paint": {
-						"line-color": "#B5C9FF"
-					},
-					"property": [
-						{
-							"key": "name",
-							"name": "名稱"
-						}
-					],
-					"type": "line",
-					"title": "堤防系統 (km)"
-				},
-				{
-					"index": "waterworks_detention",
-					"paint": {
-						"fill-color": "#3c70ff",
-						"fill-opacity": 0.7
-					},
-					"property": [
-						{
-							"key": "名稱",
-							"name": "名稱"
-						},
-						{
-							"key": "類型",
-							"name": "類型"
-						},
-						{
-							"key": "集水區",
-							"name": "集水區"
-						}
-					],
-					"type": "fill",
-					"title": "滯洪設施 (km²)"
-				},
-				{
-					"index": "waterworks_sewer",
-					"paint": {
-						"line-color": "#4D619D",
-						"line-width": [
-							"interpolate",
-							["linear"],
-							["to-number", ["get", "P_WIDTH"]],
-							1,
-							1,
-							10,
-							5,
-							100,
-							10,
-							1000,
-							20
-						]
-					},
-					"property": [
-						{
-							"key": "P_WIDTH",
-							"name": "管徑寬度"
-						},
-						{
-							"key": "P_LENGTH",
-							"name": "管線長度"
-						}
-					],
-					"type": "line",
-					"title": "雨水下水道管線 (km)"
-				}
-			],
-			"map_filter": {
-				"mode": "byLayer"
-			},
-			"chart_config": {
-				"types": ["MapLegend"]
-			},
-			"chart_data": [
-				{
-					"color": "#B5C9FF",
-					"type": "fill",
-					"name": "堤防系統 (km)",
-					"value": "139.90"
-				},
-				{
-					"color": "#3c70ff",
-					"type": "fill",
-					"name": "滯洪設施 (km²)",
-					"value": "0.1115"
-				},
-				{
-					"color": "#4D619D",
-					"type": "fill",
-					"name": "雨水下水道管線 (km)",
-					"value": "984.61"
-				}
-			],
-			"name": "防洪與雨水設備",
-			"short_desc": "顯示全市防洪與雨水設備的面積和分佈位置。",
-			"long_desc": "顯示全市防洪與雨水設備的面積和分佈位置。「水資源與水利設施」是指管理、保護和有效利用水源的相關設備及基礎建設，包括水庫、水壩、灌溉系統等，為確保水源永續利用扮演關鍵角色。",
-			"use_case": "圖表顯示防洪與雨水設備分別為何，能夠幫助我們更加了解有哪些水資源與水利設施，並透過圖表了解分佈各項分佈位置。",
-			"tags": [],
-			"links": [
-				"https://data.taipei/dataset/detail?id=5b277432-f534-4d09-a24c-d3f6b514e042"
-			],
-			"source": "工務局",
-			"contributors": [
-				"威猛先生",
-				"黃梓睿",
-				"廖偉翔",
-				"陳俊嘉",
-				"沈鈺芳",
-				"黃愉翔",
-				"tuic"
-			]
-		},
-		"162": {
-			"id": 162,
-			"index": "permeable_paving",
-			"map_config": [
-				{
-					"index": "permeable_sidewalk",
-					"paint": {
-						"fill-color": "#FFCA9C"
-					},
-					"property": [
-						{
-							"key": "NAME",
-							"name": "名稱"
-						},
-						{
-							"key": "Town_N",
-							"name": "行政區"
-						},
-						{
-							"key": "LENGTH",
-							"name": "長度"
-						}
-					],
-					"type": "fill",
-					"title": "人行道透水鋪面"
-				},
-				{
-					"index": "permeable_school",
-					"paint": {
-						"fill-color": "#FFAD66"
-					},
-					"property": [
-						{
-							"key": "TOWN",
-							"name": "行政區"
-						}
-					],
-					"type": "fill",
-					"title": "學校透水鋪面"
-				},
-				{
-					"index": "permeable_parking",
-					"paint": {
-						"fill-color": "#20E1FF",
-						"fill-opacity": 0.7
-					},
-					"property": [
-						{
-							"key": "TOWN",
-							"name": "行政區"
-						}
-					],
-					"type": "fill",
-					"title": "停車場透水鋪面"
-				},
-				{
-					"index": "permeable_park",
-					"paint": {
-						"fill-color": "#4AD84A"
-					},
-					"property": [
-						{
-							"key": "Id",
-							"name": "ID"
-						}
-					],
-					"type": "fill",
-					"title": "公園透水鋪面"
-				},
-				{
-					"index": "permeable_pac",
-					"paint": {
-						"fill-color": "#9EDBFF",
-						"fill-opacity": 0.7
-					},
-					"property": [
-						{
-							"key": "Id",
-							"name": "ID"
-						}
-					],
-					"type": "fill",
-					"title": "PAC鋪面"
-				}
-			],
-			"map_filter": {
-				"mode": "byLayer"
-			},
-			"chart_config": {
-				"types": ["TreemapChart"],
-				"unit": "m²",
-				"color": ["#4AD84A", "#FFAD66", "#9EDBFF", "#FFCA9C", "#20E1FF"]
-			},
-			"name": "透水鋪面",
-			"short_desc": "顯示全市透水性鋪面的面積和分佈位置。",
-			"long_desc": "顯示全市透水性鋪面的面積和分佈位置。是一種特殊路面，能促進雨水滲入地底，減緩地表積水及提高地下水位。這種鋪面有助於改善都市排水系統，減少洪災風險，同時維護水資源生態平衡。",
-			"use_case": "台北市的透水性鋪面的面積和分佈位置，將幫助我們探討透水性鋪面在城市中的遍佈及其相關性。",
-			"tags": [],
-			"links": [
-				"https://data.taipei/dataset/detail?id=5b277432-f534-4d09-a24c-d3f6b514e042"
-			],
-			"source": "工務局",
-			"contributors": [
-				"威猛先生",
-				"黃梓睿",
-				"廖偉翔",
-				"陳俊嘉",
-				"沈鈺芳",
-				"黃愉翔",
-				"tuic"
-			]
-		},
-		"163": {
-			"id": 163,
-			"index": "flood_simulate",
-			"map_config": [
-				{
-					"index": "flood_simulate_78",
-					"type": "fill",
-					"paint": {
-						"fill-color": [
-							"match",
-							["get", "FID"],
-							0,
-							"#CDF5FD",
-							1,
-							"#A0E9FF",
-							2,
-							"#89CFF3",
-							3,
-							"#00A9FF",
-							"#00A9FF"
-						],
-						"fill-opacity": 0.8
-					},
-					"property": [
-						{
-							"key": "Name",
-							"name": "淹水高度"
-						}
-					],
-					"title": "淹水資訊"
-				}
-			],
-			"chart_config": {
-				"color": ["#CDF5FD", "#A0E9FF", "#00A9FF"],
-				"types": ["ColumnChart", "BarPercentChart"],
-				"unit": "點",
-				"categories": [
-					"北投區",
-					"士林區",
-					"內湖區",
-					"南港區",
-					"松山區",
-					"信義區",
-					"中山區",
-					"大同區",
-					"中正區",
-					"萬華區",
-					"大安區",
-					"文山區"
-				]
-			},
-			"name": "降雨淹水模擬圖",
-			"source": "工務局水利處",
-			"time_from": "2023-06-08T00:00:00+08:00",
-			"time_to": null,
-			"update_freq": 5,
-			"update_freq_unit": "year",
-			"short_desc": "顯示全市各區降雨模擬淹水量。",
-			"long_desc": "本圖表展示本市在短延時強降雨條件（78.8mm/h、100mm/h、130mm/h）下可能的淹水範圍及淹水高度。淹水高度以不同顏色表示，分為三級：淺藍色代表 0.15m~0.30m，中藍色代表 0.30m~1.0m，深藍色代表 1.0m~2.0m。資料來源為工務局水利處，每五年更新一次。",
-			"use_case": "本組件可展示本市短延時強降雨條件下（78.8mm/h、100mm/h、130mm/h）之可能積水範圍、可能積水深度，以做防洪規劃。",
-			"tags": [],
-			"links": ["https://data.gov.tw/dataset/121550"],
-			"contributors": [
-				"我們都是112A",
-				"蔡立倫",
-				"謝芝嫻",
-				"王佑豪",
-				"賴彥良",
-				"林育緹",
-				"tuic"
-			]
-		},
-		"164": {
-			"id": 164,
-			"index": "condemn_building",
-			"map_config": [
-				{
-					"index": "condemned_building",
-					"paint": {
-						"circle-color": ["get", "color"],
-						"circle-radius": ["get", "radius"],
-						"circle-opacity": 0.7
-					},
-					"property": [
-						{
-							"key": "面積",
-							"name": "危樓面積"
-						},
-						{
-							"key": "地址",
-							"name": "地址"
-						}
-					],
-					"type": "circle",
-					"title": "各地點危樓面積總量"
-				}
-			],
-			"chart_config": {
-				"types": ["DistrictChart", "ColumnChart"],
-				"color": ["#39FF14"],
-				"unit": "m²"
-			},
-			"source": "建管處",
-			"name": "危樓面積",
-			"time_from": "2021-12-01T00:00:00+08:00",
-			"time_to": "2022-12-01T00:00:00+08:00",
-			"update_freq": 1,
-			"update_freq_unit": "month",
-			"short_desc": "顯示台北市危老核准重建計畫地點及面積。",
-			"long_desc": "顯示台北市危老核准重建計畫地點及面積，資料來源為台北市建築管理工程處開放資料，每一個月更新。",
-			"use_case": "可以用於顯示需拆除的危樓資訊，促進綠色城市推動，透過這些點位資訊，我們可以知道台北市危老核准重建計畫的案例地點及面積，在進行綠地、綠色建築等相關建設時可考慮利用這些地點。",
-			"links": ["https://dba.gov.taipei/cp.aspx?n=56283449CC905BB4"],
-			"contributors": [
-				"我們都是112A",
-				"蔡立倫",
-				"謝芝嫻",
-				"王佑豪",
-				"賴彥良",
-				"林育緹",
-				"tuic"
-			]
 		}
 	}
 }

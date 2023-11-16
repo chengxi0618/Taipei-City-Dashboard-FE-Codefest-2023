@@ -9,7 +9,6 @@ const props = defineProps([
 	"activeChart",
 	"series",
 	"map_config",
-	"map_filter",
 ]);
 const mapStore = useMapStore();
 
@@ -90,25 +89,16 @@ function handleDataSelection(index) {
 		return;
 	}
 	if (index !== selectedIndex.value) {
-		// Supports filtering by xAxis
-		if (props.map_filter.mode === "byParam") {
-			mapStore.filterByParam(
-				props.map_filter,
-				props.map_config,
-				districts[index]
-			);
-		}
-		// Supports filtering by xAxis
-		else if (props.map_filter.mode === "byLayer") {
-			mapStore.filterByLayer(props.map_config, districts[index]);
-		}
+		mapStore.addLayerFilter(
+			`${props.map_config[0].index}-${props.map_config[0].type}`,
+			props.chart_config.map_filter[0],
+			props.chart_config.map_filter[1][index]
+		);
 		selectedIndex.value = index;
 	} else {
-		if (props.map_filter.mode === "byParam") {
-			mapStore.clearByParamFilter(props.map_config);
-		} else if (props.map_filter.mode === "byLayer") {
-			mapStore.clearByLayerFilter(props.map_config);
-		}
+		mapStore.clearLayerFilter(
+			`${props.map_config[0].index}-${props.map_config[0].type}`
+		);
 		selectedIndex.value = null;
 	}
 }

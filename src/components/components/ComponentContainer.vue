@@ -9,7 +9,6 @@ import { useDialogStore } from "../../store/dialogStore";
 import { useContentStore } from "../../store/contentStore";
 
 import ComponentTag from "../utilities/ComponentTag.vue";
-import TagTooltip from "../utilities/TagTooltip.vue";
 import { chartTypes } from "../../assets/configs/apexcharts/chartTypes";
 
 const dialogStore = useDialogStore();
@@ -58,13 +57,6 @@ const updateFreq = computed(() => {
 		unitRef[props.content.update_freq_unit]
 	}更新`;
 });
-// The style for the tag tooltip
-const tooltipPosition = computed(() => {
-	return {
-		left: `${mousePosition.value.x - 40}px`,
-		top: `${mousePosition.value.y - 110}px`,
-	};
-});
 
 // Toggles between chart types defined in the dashboard component
 function changeActiveChart(chartName) {
@@ -100,17 +92,7 @@ function changeShowTagTooltipState(state) {
 			<div>
 				<h3>
 					{{ content.name }}
-					<ComponentTag
-						icon=""
-						:text="updateFreq"
-						mode="small"
-						@click="
-							dialogStore.showNotification(
-								'info',
-								'為內部版本更新頻率，本展示站台均為靜態資料'
-							)
-						"
-					/>
+					<ComponentTag icon="" :text="updateFreq" mode="small" />
 				</h3>
 				<h4>{{ `${content.source} | ${dataTime}` }}</h4>
 			</div>
@@ -191,7 +173,6 @@ function changeShowTagTooltipState(state) {
 				:chart_config="content.chart_config"
 				:series="content.chart_data"
 				:map_config="content.map_config"
-				:map_filter="content.map_filter"
 				:key="`${props.content.index}-${item}-chart`"
 			>
 			</component>
@@ -206,26 +187,40 @@ function changeShowTagTooltipState(state) {
 			<div></div>
 		</div>
 		<div class="componentcontainer-footer">
-			<div
-				@mouseenter="changeShowTagTooltipState(true)"
-				@mousemove="updateMouseLocation"
-				@mouseleave="changeShowTagTooltipState(false)"
-			>
+			<div>
 				<ComponentTag
-					v-if="content.map_filter && content.map_config"
+					v-if="content.chart_config.map_filter && content.map_config"
 					icon="tune"
 					text="篩選地圖"
+					@click="
+						dialogStore.showNotification(
+							'info',
+							'本組件有篩選地圖功能，歡迎至地圖頁面嘗試'
+						)
+					"
 					class="hide-if-mobile"
 				/>
 				<ComponentTag
 					v-if="content.map_config"
 					icon="map"
 					text="空間資料"
+					@click="
+						dialogStore.showNotification(
+							'info',
+							'本組件有空間資料，歡迎至地圖頁面查看'
+						)
+					"
 				/>
 				<ComponentTag
 					v-if="content.history_data"
 					icon="insights"
 					text="歷史資料"
+					@click="
+						dialogStore.showNotification(
+							'info',
+							'本組件有歷史資訊，點擊「組件資訊」以查看'
+						)
+					"
 					class="history-tag"
 				/>
 			</div>

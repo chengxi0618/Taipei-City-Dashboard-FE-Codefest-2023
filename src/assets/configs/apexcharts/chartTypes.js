@@ -11,5 +11,5 @@ export const chartTypes = {
 	GuageChart: "量表圖", // V
 	RadarChart: "雷達圖",
 	HeatmapChart: "熱力圖",
-	SpeedometerChart: "儀表板圖",
+	VennDiagram: "文氏圖",
 };
